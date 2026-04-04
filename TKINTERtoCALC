@@ -5,51 +5,57 @@ class cal:
         self.root = tk.Tk()
         self.root.title("calculatrice")
         self.root.geometry("800x400")
-        self.name_entry = tk.Entry(self.root, width=90, font=("Arial", 33))
-        self.name_entry.pack(padx=20, pady=5)
+        self.champText = tk.Entry(self.root, width=90, font=("Arial", 33))
+        self.champText.pack(padx=20, pady=5)
         btn_frame = tk.Frame(self.root)
         btn_frame1 = tk.Frame(self.root)
         btn_frame2 = tk.Frame(self.root)  
         btn_frame.pack(pady=5)
         btn_frame1.pack(pady=5)
         btn_frame2.pack(pady=5)
-        tk.Button(btn_frame, text="1", command=lambda: self.name_entry.insert(tk.END, "1"),
+        tk.Button(btn_frame, text="1", command=lambda: self.champText.insert(tk.END, "1"),
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame, text="2", command=lambda: self.name_entry.insert(tk.END, "2"),
+        tk.Button(btn_frame, text="2", command=lambda: self.champText.insert(tk.END, "2"),
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame, text="3", command=lambda: self.name_entry.insert(tk.END, "3"),
+        tk.Button(btn_frame, text="3", command=lambda: self.champText.insert(tk.END, "3"),
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame, text="", command=self.calcul,
+        tk.Button(btn_frame, text="4", command=lambda: self.champText.insert(tk.END, "4"),
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame1, text="4", command=lambda: self.name_entry.insert(tk.END, "4"),
+        tk.Button(btn_frame1, text="5", command=lambda: self.champText.insert(tk.END, "5"),
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame1, text="5", command=lambda: self.name_entry.insert(tk.END, "5"),
+        tk.Button(btn_frame1, text="6", command=lambda: self.champText.insert(tk.END, "6"),
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame1, text="6", command=lambda: self.name_entry.insert(tk.END, "6"),
+        tk.Button(btn_frame1, text="7", command=lambda: self.champText.insert(tk.END, "7"),
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame1, text="", command=self.calcul,
+        tk.Button(btn_frame1, text="8", command=lambda: self.champText.insert(tk.END, "8"),
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame2, text="8", command=lambda: self.name_entry.insert(tk.END, "8"),
+        tk.Button(btn_frame2, text="9", command=lambda: self.champText.insert(tk.END, "9"),
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame2, text="8", command=lambda: self.name_entry.insert(tk.END, "8"),
+        tk.Button(btn_frame2, text="0", command=lambda: self.champText.insert(tk.END, "0"),
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame2, text="8", command=lambda: self.name_entry.insert(tk.END, "8"),
+        tk.Button(btn_frame2, text="=", command=self.calcul,
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
-        tk.Button(btn_frame2, text="8", command=lambda: self.name_entry.insert(tk.END, "8"),
+        tk.Button(btn_frame2, text="+", command=self.addition,
                  bg="blue", fg="white", width=25).pack(side="left", padx=1)
         
         self.root.mainloop()
+    x = 0
+    y = 0
     def calcul(self):
-        self.name_entry.insert(tk.END, "1")
-        self.name_entry.insert(tk.END, "2")
-        self.name_entry.insert(tk.END, "3")
-        self.name_entry.insert(tk.END, "4")
-        self.name_entry.insert(tk.END, "5")
-        self.name_entry.insert(tk.END, "6")
-        self.name_entry.insert(tk.END, "7")
-        self.name_entry.insert(tk.END, "8")
-        self.name_entry.insert(tk.END, "9")
-        self.name_entry.insert(tk.END, "0")
+        try:
+            self.y = int(self.champText.get()) 
+            result = self.x+self.y
+            self.champText.delete(0, tk.END) 
+            self.champText.insert(tk.END, str(result))
+        except Exception as e:
+            messagebox.showerror("Error", "Invalid expression")
+        
+        
+    def addition(self):
+        self.x = int(self.champText.get())
+        self.champText.delete(0, tk.END) 
+        
+        
             
 if __name__ == "__main__":
     app = cal()
