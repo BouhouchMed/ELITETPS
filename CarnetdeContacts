@@ -1,0 +1,21 @@
+contacts = []
+while True:
+    print("1. Add contact 2. View contacts 3.Search contact 4. Exit")
+    option = int(input("Choose an option: "))
+    match option:
+        case 1:
+            name = input("Enter contact name: ")
+            tel = input("Enter tel: ")
+            contacts.append(f"name: {name}, tel: {tel}")
+        case 2:
+            for i, e in enumerate(contacts):
+                print(f"{i+1}. {e}")
+        case 3:
+            search_term = input("Enter contact name: ")
+            maches = {item for item in contacts if search_term.lower() in item.lower()}
+            if maches:
+                print(f"Found {len(maches)}: {maches} ")
+            else:
+                print(f"No members found {search_term}")
+        case 4:
+            exit()
