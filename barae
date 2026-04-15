@@ -1,0 +1,20 @@
+print("🏝️ Bienvenue dans le jeu Aventure du Trésor !")
+
+print("Tu es sur une île... Choisis un chemin :")
+print("⬅️ gauche")
+print("➡️ droite")
+print("⬆️ devant")
+
+choix = input("Ton choix : ")
+
+match choix:
+    case "gauche":
+        print("🐍 Tu as trouvé un serpent ! Tu as perdu !")
+    case "droite":
+        print("🕳️ Tu es tombé dans un trou ! Tu as perdu !")
+    case "devant":
+        print("💰 Bravo ! Tu as trouvé le trésor !")
+    case _:
+        print("❌ Choix invalide")
+
+print("🎮 Fin du jeu")
