@@ -1,8 +1,9 @@
 print("gestion scolaire")
 print("1. Ajouter un étudiant")
 print("2. Afficher les étudiants")
-print("3. Supprimer un étudiant")
-print("4. Quitter")
+print("3. Chercher un étudiant")
+print("4. Supprimer un étudiant")
+print("5. Quitter")
 noms=[]
 prenoms=[]
 dn=[]
@@ -22,6 +23,15 @@ while True:
         for i in range(len(noms)):
             print(f"{noms[i]} {prenoms[i]} - Date de naissance: {dn[i]} - Niveau: {niv[i]}")
     elif choix==3:
+        nom_chercher=input("Entrez le nom de l'étudiant à chercher: ")
+        truvee=False
+        for i in range(len(noms)):
+            if noms[i]==nom_chercher:
+                print(f"{noms[i]} {prenoms[i]} - Date de naissance: {dn[i]} - Niveau: {niv[i]}")
+                truvee=True
+        if not truvee:
+            print(f"Étudiant {nom_chercher} non trouvé.")
+    elif choix==4:
         num_supprimer=int(input("Entrez le numéro de l'étudiant à supprimer: "))
         if 0 <= num_supprimer < len(noms):
             noms.pop(num_supprimer)
@@ -31,7 +41,7 @@ while True:
             print("Étudiant supprimé avec succès.")
         else:
             print(f"Étudiant {num_supprimer} non trouvé.")
-    elif choix==4:
+    elif choix==5:
         print("Au revoir!")
         break
     else:
