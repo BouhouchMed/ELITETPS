@@ -1,6 +1,6 @@
 import json
 
-print("1.add a product")
+print("1.add a product \n2.remove a product")
 
 choix = int(input('Choose (1/2): '))
 
@@ -9,25 +9,40 @@ if choix == 1:
         stock = json.load(f)
     print(f"Chargement reussi du magasin: {stock['name']}")
 
-while True:
-    product = input("Enter product name(exit to save and quit): ")
-    if product.lower() == "exit":
-        with open("eleves.json", "w") as f:
-            json.dump(stock, f)
-        break
-    if not product:
-        print("Name for product is empty")
-        continue
+    while True:
+        product = input("Enter product name(exit to save and quit): ")
+        if product.lower() == "exit":
+            with open("eleves.json", "w") as f:
+                json.dump(stock, f)
+            break
+        if not product:
+            print("Name for product is empty")
+            continue
 
-    prix = float(input(f"Enter price for '{product}'"))
-    quantite = int(input(f"Enter quatity of '{product}'"))
+        prix = float(input(f"Enter price for '{product}'"))
+        quantite = int(input(f"Enter quatity of '{product}'"))
 
-    descreption = input("Description : ")
+        descreption = input("Description : ")
 
 
-    stock["products"][f"P{len(list(stock['products'].keys()))+1}"] = {
-        "name":product,
-        "price":prix,
-        "quantity":quantite,
-        "descreption":descreption
-    }
+        stock["products"][f"P{len(list(stock['products'].keys()))+1}"] = {
+            "name":product,
+            "price":prix,
+            "quantity":quantite,
+            "descreption":descreption
+        }
+else:
+    with open ("eleves.json","r") as f:
+        stock= json.load(f)
+    print(f"chargement... {stock['name']}")
+    while True:
+        product_id=input("entrez l id du produit que vous voulez supprimer(exit pour quitter):")
+        if product_id.lower() =="exit":
+            with open ("eleves.json","w") as f:
+                json.dump(stock,f)
+            break
+        if product_id.upper() not in stock["products"]:
+            print("product id not found!")
+            continue
+        del stock["products"][product_id.upper()]
+        print(stock["products"])
