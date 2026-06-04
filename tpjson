@@ -1,0 +1,33 @@
+import json
+
+print("1.add a product")
+
+choix = int(input('Choose (1/2): '))
+
+if choix == 1:
+    with open("eleves.json", "r", encoding="utf-8") as f:
+        stock = json.load(f)
+    print(f"Chargement reussi du magasin: {stock['name']}")
+
+while True:
+    product = input("Enter product name(exit to save and quit): ")
+    if product.lower() == "exit":
+        with open("eleves.json", "w") as f:
+            json.dump(stock, f)
+        break
+    if not product:
+        print("Name for product is empty")
+        continue
+
+    prix = float(input(f"Enter price for '{product}'"))
+    quantite = int(input(f"Enter quatity of '{product}'"))
+
+    descreption = input("Description : ")
+
+
+    stock["products"][f"P{len(list(stock['products'].keys()))+1}"] = {
+        "name":product,
+        "price":prix,
+        "quantity":quantite,
+        "descreption":descreption
+    }
